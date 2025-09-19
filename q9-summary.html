@@ -1,0 +1,320 @@
+<!-- playground-fold -->
+<!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://www.britishgas.co.uk/react-components/ns-foundations.css" type="text/css" />
+  <link rel="stylesheet" href="https://www.britishgas.co.uk/react-components/react-components.css" type="text/css" />
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <script src="https://www.britishgas.co.uk/react-components/react-components.umd.js" type="text/javascript"></script>
+  <script src="https://www.britishgas.co.uk/nucleus/nucleus.min.js" type="text/javascript"></script>
+  
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      ReactComponents.init();
+      Nucleus.init();
+    });
+
+        // Update each summary item
+        Object.entries(summaryData).forEach(([id, data]) => {
+          const element = document.getElementById(id);
+          if (element) {
+            const labelEl = element.querySelector('.ev-summary-label-unique');
+            const valueEl = element.querySelector('.ev-summary-value-unique');
+            if (labelEl && valueEl) {
+              labelEl.textContent = data.label;
+              valueEl.textContent = data.value || 'Not selected';
+            }
+          }
+        });
+      
+
+      // Update summaries right away
+      updateSummaries();
+      
+      function getSummaryData() {
+        const data = {
+          'parking-summary': {
+            label: 'Off-street Parking',
+            value: localStorage.getItem('q1_offstreet_parking')
+          },
+          'installation-summary': {
+            label: 'Installation Type',
+            value: localStorage.getItem('q2_installation_type')
+          },
+          'cable-type-summary': {
+            label: 'Cable Type',
+            value: localStorage.getItem('q3_cable_type')
+          },
+          'cable-length-summary': {
+            label: 'Cable Length',
+            value: localStorage.getItem('q4_cable_length') || localStorage.getItem('q4b_cable_length')
+          },
+          'cable-location-summary': {
+            label: 'Cable Location',
+            value: localStorage.getItem('q5_cable_location')
+          },
+          'connector-summary': {
+            label: 'Connector Length',
+            value: localStorage.getItem('q6_connector')
+          },
+          'bonding-summary': {
+            label: 'Earthing / Bonding',
+            value: localStorage.getItem('q7_bonded')
+          },
+          'surge-summary': {
+            label: 'Surge Protection',
+            value: localStorage.getItem('q8_surge_protection')
+          }
+        };
+        console.log('Summary data:', data);
+        return data;
+      }
+
+      function updateSummaryItem(id, data) {
+        const element = document.getElementById(id);
+        if (!element) {
+          console.warn('Element not found:', id);
+          return;
+        }
+        
+        // Force create elements if they don't exist
+        let labelEl = element.querySelector('.summary-label');
+        let valueEl = element.querySelector('.summary-value');
+        
+        if (!labelEl) {
+          labelEl = document.createElement('div');
+          labelEl.className = 'summary-label';
+          element.appendChild(labelEl);
+        }
+        
+        if (!valueEl) {
+          valueEl = document.createElement('div');
+          valueEl.className = 'summary-value';
+          element.appendChild(valueEl);
+        }
+        
+        if (data.value) {
+          console.log('Updating', id, 'with:', data);
+          labelEl.textContent = data.label;
+          valueEl.textContent = data.value;
+          element.style.display = 'block';
+        } else {
+          console.warn('No value for:', id);
+          element.style.display = 'none';
+        }
+      }
+
+      // Try to display data immediately and retry if needed
+      function displaySummaryData() {
+        console.log('Attempting to display summary data...');
+        const summaryData = getSummaryData();
+        let hasData = false;
+        
+        Object.entries(summaryData).forEach(([id, data]) => {
+          if (data.value) hasData = true;
+          updateSummaryItem(id, data);
+        });
+        
+        if (!hasData) {
+          console.log('No data found, retrying in 1 second...');
+          setTimeout(displaySummaryData, 1000);
+        }
+      }
+      
+      // Try immediately
+      displaySummaryData();
+    
+  </script>
+</head>
+
+<body>
+    <main class="ndsn">
+   
+
+  <div class="header bg-header">
+
+
+    
+    <nsx-header menu-banner="[{&quot;text&quot;:&quot;Make the switch to a fixed energy tariff today&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/new-energy/sales&quot;,&quot;text&quot;:&quot;Get your energy quote&quot;,&quot;type&quot;:&quot;direct&quot;}},{&quot;text&quot;:&quot;Protect your heating, electrics, plumbing and drains&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/cover/boiler-and-heating.html&quot;,&quot;text&quot;:&quot;Choose your HomeCare cover&quot;,&quot;type&quot;:&quot;direct&quot;}},{&quot;text&quot;:&quot;Save and chill with an annual&nbsp;service for just £79&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/heating/boiler-service.html&quot;,&quot;text&quot;:&quot;Book a boiler service&quot;,&quot;type&quot;:&quot;direct&quot;}},{&quot;text&quot;:&quot;Get Plumbing and Drains cover from £5.20/month&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/cover/plumbing-drains.html&quot;,&quot;text&quot;:&quot;Get your cover&quot;,&quot;type&quot;:&quot;direct&quot;}},{&quot;text&quot;:&quot;Home electrical repairs from just £125&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/electrical/lighting.html&quot;,&quot;text&quot;:&quot;Book an electrician&quot;,&quot;type&quot;:&quot;direct&quot;}},{&quot;text&quot;:&quot;Get kitchen appliance cover from £1.50/month&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/cover/appliances.html&quot;,&quot;text&quot;:&quot;Protect your appliances&quot;,&quot;type&quot;:&quot;direct&quot;}},{&quot;text&quot;:&quot;I need help with something else&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/help-and-support&quot;,&quot;text&quot;:&quot;Go to help centre&quot;,&quot;type&quot;:&quot;direct&quot;}}]" secondary-banner="[{&quot;text&quot;:&quot;Find out how we can help power, protect and repair your home.&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;/pathfinder.html&quot;,&quot;text&quot;:&quot;Get a quote&quot;}}]" quick-links="[[{&quot;heading&quot;:&quot;Common actions&quot;,&quot;href&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Send a meter reading&quot;,&quot;href&quot;:&quot;/meterreads&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Top up your meter&quot;,&quot;href&quot;:&quot;/my-account/topup&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Book a repair&quot;,&quot;href&quot;:&quot;/apps/boilers-and-heating/boiler-repair/how-can-we-help&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Book a smart meter&quot;,&quot;href&quot;:&quot;/energy/smart-meters.html&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Moving home&quot;,&quot;href&quot;:&quot;/discover/home-move/&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Tell us about a bereavement&quot;,&quot;href&quot;:&quot;/help-and-support/probate&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Refer a friend&quot;,&quot;href&quot;:&quot;/offers/refer-a-friend.html&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Membership&quot;,&quot;href&quot;:&quot;/membership.html&quot;,&quot;data-ns-link&quot;:&quot;&quot;}]}],[{&quot;heading&quot;:&quot;Common actions&quot;,&quot;href&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Send a meter reading&quot;,&quot;href&quot;:&quot;/my-account/premises/select/accounts/meter-reads&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Top up your meter&quot;,&quot;href&quot;:&quot;/my-account/topup&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Book a repair&quot;,&quot;href&quot;:&quot;/apps/boilers-and-heating/boiler-repair/how-can-we-help&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Book a smart meter&quot;,&quot;href&quot;:&quot;/energy/smart-meters.html&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Moving home&quot;,&quot;href&quot;:&quot;/discover/home-move/&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Tell us about a bereavement&quot;,&quot;href&quot;:&quot;/help-and-support/probate&quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Refer a friend&quot;,&quot;href&quot;:&quot;/offers/refer-a-friend.html &quot;,&quot;data-ns-link&quot;:&quot;&quot;},{&quot;text&quot;:&quot;Membership offers&quot;,&quot;href&quot;:&quot;/apps/memberships/&quot;,&quot;data-ns-link&quot;:&quot;&quot;}]}]]" sections="[[{&quot;heading&quot;:&quot;Energy tariffs&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity.html&quot;,&quot;alt&quot;:&quot;Energy tariffs&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Switch to British Gas&quot;,&quot;href&quot;:&quot;/energy/switch-energy-supplier.html&quot;,&quot;alt&quot;:&quot;Switch to British Gas&quot;},{&quot;text&quot;:&quot;Get an energy quote&quot;,&quot;href&quot;:&quot;/new-energy/sales&quot;,&quot;alt&quot;:&quot;Get an energy quote&quot;},{&quot;text&quot;:&quot;Electric vehicle tariff&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/ev-tariff.html&quot;,&quot;alt&quot;:&quot;Electric vehicle tariff&quot;},{&quot;text&quot;:&quot;Prepayment tariff&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/prepayment-meter-tariffs.html&quot;,&quot;alt&quot;:&quot;Prepayment tariff&quot;},{&quot;text&quot;:&quot;Smart Export Guarantee tariff&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/smart-export-guarantee-tariff.html&quot;,&quot;alt&quot;:&quot;Smart Export Guarantee tariff&quot;}]},{&quot;heading&quot;:&quot;Existing customers&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Change your existing tariff&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/tariffs-for-existing-customers.html&quot;,&quot;alt&quot;:&quot;Change your existing tariff&quot;},{&quot;text&quot;:&quot;Submit a meter reading&quot;,&quot;href&quot;:&quot;/meterreads&quot;,&quot;alt&quot;:&quot;Submit a meter reading&quot;},{&quot;text&quot;:&quot;Top up your meter&quot;,&quot;href&quot;:&quot;/my-account/topup&quot;,&quot;alt&quot;:&quot;Top up your meter&quot;},{&quot;text&quot;:&quot;Book a smart meter&quot;,&quot;href&quot;:&quot;/energy/smart-meters.html&quot;,&quot;alt&quot;:&quot;Book a smart meter&quot;},{&quot;text&quot;:&quot;Moving home&quot;,&quot;href&quot;:&quot;/discover/home-move/&quot;,&quot;alt&quot;:&quot;Moving home&quot;}]},{&quot;heading&quot;:&quot;Greener energy&quot;,&quot;href&quot;:&quot;/greener-energy.html&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;PeakSave&quot;,&quot;href&quot;:&quot;/energy/peak-save.html&quot;,&quot;alt&quot;:&quot;PeakSave&quot;},{&quot;text&quot;:&quot;EV charger&quot;,&quot;href&quot;:&quot;/electrical/ev-charging.html&quot;,&quot;alt&quot;:&quot;EV charger&quot;},{&quot;text&quot;:&quot;Solar panels and battery&quot;,&quot;href&quot;:&quot;/electrical/solar-panels.html&quot;,&quot;alt&quot;:&quot;Solar panels and battery&quot;},{&quot;text&quot;:&quot;Heat pumps&quot;,&quot;href&quot;:&quot;/heating/air-source-heat-pumps.html&quot;,&quot;alt&quot;:&quot;Heat pumps&quot;},{&quot;text&quot;:&quot;Insulation&quot;,&quot;href&quot;:&quot;/heating/home-insulation.html&quot;,&quot;alt&quot;:&quot;Insulation&quot;},{&quot;text&quot;:&quot;Smart homes and heating&quot;,&quot;href&quot;:&quot;/electrical/smart-homes.html&quot;,&quot;alt&quot;:&quot;Smart homes and heating&quot;}]},{&quot;heading&quot;:&quot;New metering connections&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/new-connections.html&quot;,&quot;alt&quot;:&quot;New metering connections&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Home or self-build projects&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/new-connections-for-projects-at-homes.html&quot;,&quot;alt&quot;:&quot;Home or self-build projects&quot;},{&quot;text&quot;:&quot;Housing developers&quot;,&quot;href&quot;:&quot;/energy/gas-and-electricity/new-connections-for-housing-developers.html&quot;,&quot;alt&quot;:&quot;Housing developers&quot;}]}],[{&quot;heading&quot;:&quot;HomeCare&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Boiler and heating cover&quot;,&quot;href&quot;:&quot;/cover/boiler-and-heating.html&quot;,&quot;alt&quot;:&quot;Boiler and heating cover&quot;},{&quot;text&quot;:&quot;Appliance cover&quot;,&quot;href&quot;:&quot;/cover/appliances.html&quot;,&quot;alt&quot;:&quot;Appliance cover&quot;},{&quot;text&quot;:&quot;Plumbing and drains cover&quot;,&quot;href&quot;:&quot;/cover/plumbing-drains.html&quot;,&quot;alt&quot;:&quot;Plumbing and drains cover&quot;},{&quot;text&quot;:&quot;Home electrical cover&quot;,&quot;href&quot;:&quot;/cover/home-electrics.html&quot;,&quot;alt&quot;:&quot;Home electrical cover&quot;},{&quot;text&quot;:&quot;Boiler service and safety check&quot;,&quot;href&quot;:&quot;/heating/boiler-service.html&quot;,&quot;alt&quot;:&quot;Boiler service and safety check&quot;},{&quot;text&quot;:&quot;Landlord cover&quot;,&quot;href&quot;:&quot;/landlords/cover.html&quot;,&quot;alt&quot;:&quot;Landlord cover&quot;},{&quot;text&quot;:&quot;Membership&quot;,&quot;href&quot;:&quot;/membership.html&quot;,&quot;alt&quot;:&quot;Membership&quot;}]}],[{&quot;heading&quot;:&quot;Boilers&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;New and replacement boilers&quot;,&quot;href&quot;:&quot;/heating/new-boiler.html&quot;,&quot;alt&quot;:&quot;New and replacement boilers&quot;},{&quot;text&quot;:&quot;Boiler service and safety check&quot;,&quot;href&quot;:&quot;/heating/boiler-service.html&quot;,&quot;alt&quot;:&quot;Boiler service and safety check&quot;},{&quot;text&quot;:&quot;Boiler repair&quot;,&quot;href&quot;:&quot;/heating/boiler-repair.html&quot;,&quot;alt&quot;:&quot;Boiler repair&quot;},{&quot;text&quot;:&quot;Boiler and heating cover&quot;,&quot;href&quot;:&quot;/cover/boiler-and-heating.html&quot;,&quot;alt&quot;:&quot;Boiler and heating cover&quot;}]},{&quot;heading&quot;:&quot;Heat&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Heat pumps&quot;,&quot;href&quot;:&quot;/heating/air-source-heat-pumps.html&quot;,&quot;alt&quot;:&quot;Heat pumps&quot;},{&quot;text&quot;:&quot;Smart heating&quot;,&quot;href&quot;:&quot;https://www.hivehome.com/shop/smart-heating&quot;,&quot;alt&quot;:&quot;Smart heating&quot;},{&quot;text&quot;:&quot;Radiator installation&quot;,&quot;href&quot;:&quot;/heating/radiators.html&quot;,&quot;alt&quot;:&quot;Radiator installation&quot;},{&quot;text&quot;:&quot;Home insulation&quot;,&quot;href&quot;:&quot;/heating/home-insulation.html&quot;,&quot;alt&quot;:&quot;Home insulation&quot;}]}],[{&quot;heading&quot;:&quot;Plumbing and drains&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Plumbing and drains repair&quot;,&quot;href&quot;:&quot;/plumbing/services.html&quot;,&quot;alt&quot;:&quot;Plumbing and drains repair&quot;},{&quot;text&quot;:&quot;Plumbing and drains cover&quot;,&quot;href&quot;:&quot;/cover/plumbing-drains.html&quot;,&quot;alt&quot;:&quot;Plumbing and drains cover&quot;},{&quot;text&quot;:&quot;Radiator installation&quot;,&quot;href&quot;:&quot;/heating/radiators.html&quot;,&quot;alt&quot;:&quot;Radiator installation&quot;},{&quot;text&quot;:&quot;Boiler repair&quot;,&quot;href&quot;:&quot;/heating/boiler-repair.html&quot;,&quot;alt&quot;:&quot;Boiler repair&quot;}]},{&quot;heading&quot;:&quot;Water efficiency upgrades&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Hydroflow limescale control&quot;,&quot;href&quot;:&quot;/plumbing/limescale-control.html&quot;,&quot;alt&quot;:&quot;Hydroflow limescale control&quot;},{&quot;text&quot;:&quot;Mains water switch&quot;,&quot;href&quot;:&quot;/plumbing/mains-water-switch.html&quot;,&quot;alt&quot;:&quot;Mains water switch&quot;},{&quot;text&quot;:&quot;CombiSave valve&quot;,&quot;href&quot;:&quot;/heating/combisave.html&quot;,&quot;alt&quot;:&quot;CombiSave valve&quot;}]}],[{&quot;heading&quot;:&quot;Home electrics&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Home electrical repair&quot;,&quot;href&quot;:&quot;/electrical/lighting.html&quot;,&quot;alt&quot;:&quot;Home electrical repair&quot;},{&quot;text&quot;:&quot;Home electrical cover&quot;,&quot;href&quot;:&quot;/cover/home-electrics.html&quot;,&quot;alt&quot;:&quot;Home electrical cover&quot;},{&quot;text&quot;:&quot;Smart home&quot;,&quot;href&quot;:&quot;/electrical/smart-homes.html&quot;,&quot;alt&quot;:&quot;Smart home&quot;},{&quot;text&quot;:&quot;Solar panels and battery&quot;,&quot;href&quot;:&quot;/electrical/solar-panels.html&quot;,&quot;alt&quot;:&quot;Solar panels and battery&quot;},{&quot;text&quot;:&quot;Electrical and wiring upgrades&quot;,&quot;href&quot;:&quot;/electrical.html&quot;,&quot;alt&quot;:&quot;Electrical and wiring upgrades&quot;},{&quot;text&quot;:&quot;Electrical Installation Condition Report&quot;,&quot;href&quot;:&quot;/landlords/electrical-installation-condition-report.html&quot;,&quot;alt&quot;:&quot;Electrical Installation Condition Report&quot;}]},{&quot;heading&quot;:&quot;Electric vehicles&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;EV charger&quot;,&quot;href&quot;:&quot;/electrical/ev-charging.html&quot;,&quot;alt&quot;:&quot;EV charger&quot;},{&quot;text&quot;:&quot;Electric vehicle tariff&quot;,&quot;href&quot;:&quot;/energy/ev-tariff-home.html&quot;,&quot;alt&quot;:&quot;Electric vehicle tariff&quot;}]}],[{&quot;heading&quot;:&quot;Kitchen appliances&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Cooking appliance repairs&quot;,&quot;href&quot;:&quot;/appliances/oven-cooker-repair.html&quot;,&quot;alt&quot;:&quot;Cooking appliance repairs&quot;},{&quot;text&quot;:&quot;Washing appliance repairs&quot;,&quot;href&quot;:&quot;/appliances/washing-machine-repair.html&quot;,&quot;alt&quot;:&quot;Washing appliance repairs&quot;},{&quot;text&quot;:&quot;Tumble dryer appliance repairs&quot;,&quot;href&quot;:&quot;/appliances/tumble-dryer-repair.html&quot;,&quot;alt&quot;:&quot;umble dryer appliance repairs&quot;},{&quot;text&quot;:&quot;Dishwasher repairs&quot;,&quot;href&quot;:&quot;/appliances/dishwasher-repair.html&quot;,&quot;alt&quot;:&quot;Dishwasher repairs&quot;},{&quot;text&quot;:&quot;Fridge and freezer repairs&quot;,&quot;href&quot;:&quot;/appliances/fridge-freezer-repair.html&quot;,&quot;alt&quot;:&quot;Fridge and freezer repairs&quot;},{&quot;text&quot;:&quot;Kitchen appliance cover&quot;,&quot;href&quot;:&quot;/cover/appliances.html&quot;,&quot;alt&quot;:&quot;Kitchen appliance cover&quot;}]},{&quot;heading&quot;:&quot;Gas appliances&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Boiler repairs&quot;,&quot;href&quot;:&quot;/heating/boiler-repair.html&quot;,&quot;alt&quot;:&quot;Boiler repairs&quot;},{&quot;text&quot;:&quot;Gas appliance cover&quot;,&quot;href&quot;:&quot;/cover/appliances.html&quot;,&quot;alt&quot;:&quot;Gas appliance cover&quot;},{&quot;text&quot;:&quot;Combi boilers&quot;,&quot;href&quot;:&quot;/heating/new-boiler/combi.html&quot;,&quot;alt&quot;:&quot;Combi boilers&quot;},{&quot;text&quot;:&quot;System boiler&quot;,&quot;href&quot;:&quot;/heating/new-boiler/system.html&quot;,&quot;alt&quot;:&quot;System boiler&quot;},{&quot;text&quot;:&quot;Conventional boilers&quot;,&quot;href&quot;:&quot;/heating/new-boiler/conventional.html&quot;,&quot;alt&quot;:&quot;Conventional boilers&quot;},{&quot;text&quot;:&quot;Gas fire repairs&quot;,&quot;href&quot;:&quot;/appliances/gas-fire-repair.html&quot;,&quot;alt&quot;:&quot;Gas fires&quot;}]}],[{&quot;heading&quot;:&quot;Categories&quot;,&quot;href&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Energy price cap&quot;,&quot;href&quot;:&quot;/energy/price-cap.html&quot;,&quot;alt&quot;:&quot;Energy price cap&quot;},{&quot;text&quot;:&quot;Bills and payments&quot;,&quot;href&quot;:&quot;/help-and-support/bills-and-payments&quot;,&quot;alt&quot;:&quot;Bills and payments&quot;},{&quot;text&quot;:&quot;Meters&quot;,&quot;href&quot;:&quot;/help-and-support/meters&quot;,&quot;alt&quot;:&quot;Meters&quot;},{&quot;text&quot;:&quot;Pay As You Go&quot;,&quot;href&quot;:&quot;/help-and-support/pay-as-you-go&quot;,&quot;alt&quot;:&quot;Pay As You Go&quot;},{&quot;text&quot;:&quot;Breakdowns&quot;,&quot;href&quot;:&quot;/help-and-support/breakdowns&quot;,&quot;alt&quot;:&quot;Breakdowns&quot;},{&quot;text&quot;:&quot;HomeCare&quot;,&quot;href&quot;:&quot;/help-and-support/homecare-help&quot;,&quot;alt&quot;:&quot;HomeCare&quot;},{&quot;text&quot;:&quot;Appliances&quot;,&quot;href&quot;:&quot;/help-and-support/appliances-and-engineers&quot;,&quot;alt&quot;:&quot;Appliances&quot;}]},{&quot;heading&quot;:&quot;Guides&quot;,&quot;href&quot;:&quot;/guides.html&quot;,&quot;alt&quot;:&quot;Guides&quot;,&quot;links&quot;:[{&quot;text&quot;:&quot;Energy saving tips&quot;,&quot;href&quot;:&quot;/energy/energy-saving/energy-saving-tips.html&quot;,&quot;alt&quot;:&quot;Energy saving tips&quot;},{&quot;text&quot;:&quot;Energy guides&quot;,&quot;href&quot;:&quot;/energy/guides.html&quot;,&quot;alt&quot;:&quot;Energy guides&quot;},{&quot;text&quot;:&quot;Electric vehicle guides&quot;,&quot;href&quot;:&quot;/electrical/guides.html&quot;,&quot;alt&quot;:&quot;Electric vehicle guides&quot;},{&quot;text&quot;:&quot;Boiler guides&quot;,&quot;href&quot;:&quot;/heating/guides.html&quot;,&quot;alt&quot;:&quot;Boiler guides&quot;},{&quot;text&quot;:&quot;HomeCare pricing guide&quot;,&quot;href&quot;:&quot;/cover/boiler-and-heating/pricing.html&quot;,&quot;alt&quot;:&quot;HomeCare pricing guide&quot;},{&quot;text&quot;:&quot;Heat pump guides&quot;,&quot;href&quot;:&quot;/heating/guides.html#ashp&quot;,&quot;alt&quot;:&quot;Heat pump guides&quot;},{&quot;text&quot;:&quot;Landlords guides&quot;,&quot;href&quot;:&quot;/landlords/guides.html&quot;,&quot;alt&quot;:&quot;Landlords guides&quot;}]}]]"></nsx-header>
+    
+</div>
+
+
+
+
+
+  
+
+      <ns-panel decoration="cyan-light">
+
+
+    
+      <ns-progress current="1" steps="3" info="Charger options" next="Your details"></ns-progress>
+
+
+
+      <div class="question-container">
+      <ns-content >
+        <h1 class="h2">Charger options summary</h1>
+      </ns-content>
+      <ns-column tennis-court="1" basketball-court="1" hockey-pitch="1:2" football-pitch="1:2" rugby-pitch="1:2" polo-field="1:2">
+        <div>
+          <ns-image src="images/removable-box.webp" ratio=" 1 / 1"></ns-image>
+        </div>
+
+            <div>
+              <h2 class="h1">Hive EV Charger</h2>
+              <p class="p-normal"><b>Fixed cable including installation</b></p>
+              <h3 class="h3">£1400 or from £116.67/month with 0% interest</h3>
+              <ul class="ev-summary">
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Off-street Parking</b></p>
+                    <p id="parking-answer">
+                      <script>
+                        const parkingValue = localStorage.getItem('q1_offstreet_parking');
+                        const parkingDesc = localStorage.getItem('q1_offstreet_parking_description');
+                        document.write(parkingValue + (parkingDesc ? ' - ' + parkingDesc : ''));
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q1.html">Edit</a>
+                </li>
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Installation Type</b></p>
+                    <p id="installation-answer">
+                      <script>
+                        const installValue = localStorage.getItem('q2_installation_type');
+                        const installDesc = localStorage.getItem('q2_installation_type_description');
+                        document.write(installValue + (installDesc ? ' - ' + installDesc : ''));
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q2.html">Edit</a>
+                </li>
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Cable Type</b></p>
+                    <p id="cable-type-answer">
+                      <script>
+                        const cableTypeValue = localStorage.getItem('q3_cable_type');
+                        const cableTypeDesc = localStorage.getItem('q3_cable_type_description');
+                        document.write(cableTypeValue + (cableTypeDesc ? ' - ' + cableTypeDesc : ''));
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q3.html">Edit</a>
+                </li>
+                <li >
+                  <div class="ev-summary__question" >
+                  <p class="p-caption"><b>Cable Length</b></p>
+                  <p>
+                    <script>
+                      const cableValue = localStorage.getItem('q4_cable_length') || localStorage.getItem('q4b_cable_length');
+                      const cableDesc = localStorage.getItem('q4_cable_description') || localStorage.getItem('q4b_cable_description');
+                      let cableOutput = cableValue || '';
+                      if (cableValue && cableValue !== 'Not needed' && cableDesc) {
+                        cableOutput += ' ' + cableDesc;
+                      }
+                      document.write(cableOutput);
+                    </script>
+                  </p>
+                  </div>
+                  <a href="q4a.html">Edit</a>
+                </li>
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Electric meter to charger</b></p>
+                    <p id="cable-location-answer">
+                      <script>
+                        const locationValue = localStorage.getItem('q5_cable_location');
+                        const locationDesc = localStorage.getItem('q5_cable_description');
+                        document.write(locationValue + (locationDesc ? ' ' + locationDesc : ''));
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q5.html">Edit</a>
+                </li>
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Connector Length</b></p>
+                    <p id="connector-answer">
+                      <script>
+                        const connectorValue = localStorage.getItem('q6_connector');
+                        const connectorDesc = localStorage.getItem('q6_connector_description');
+                        document.write(connectorValue + (connectorDesc ? ' ' + connectorDesc : ''));
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q6.html">Edit</a>
+                </li>
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Earthing / Bonding</b></p>
+                    <p id="bonding-answer">
+                      <script>
+                        const bondingValue = localStorage.getItem('q7_bonded');
+                        document.write(bondingValue || '');
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q7.html">Edit</a>
+                </li>
+                <li>
+                  <div class="ev-summary__question">
+                    <p class="p-caption"><b>Surge Protection</b></p>
+                    <p id="surge-answer">
+                      <script>
+                        const value = localStorage.getItem('q8_surge_protection');
+                        const desc = localStorage.getItem('q8_surge_protection_description');
+                        let output = value || '';
+                        if (value === 'Yes' && desc) {
+                          output += ' - ' + desc;
+                        }
+                        document.write(output);
+                      </script>
+                    </p>
+                  </div>
+                  <a href="q8.html">Edit</a>
+                </li>
+          
+          
+              </ul>
+            </div>
+      </ns-column>
+      
+      <rc-column tennis-court="1" basketball-court="1" default-size="1" hockey-pitch="1" rugby-pitch="2" football-pitch="2" polo-field="2" center-remaining-items="true">
+
+        <rc-action-button class="rc-action-button-height" element="a" title="Spread the cost with V12 finance" description="" variant="stacked" href="end.html">
+        </rc-action-button>
+
+        <rc-action-button class="rc-action-button-height" element="a" title="Pay in full" description="" variant="stacked" href="end.html">
+        </rc-action-button>
+
+      </rc-column>
+
+      <ns-control icon="chevron-left" onclick="history.back()">Back</ns-control>
+      </div>
+    </ns-panel>
+</main>
+
+
+
+
+
+
+  <ns-footer></ns-footer>
+</body>
+<!-- playground-fold-end -->
+
+
+
+
+  <ns-footer></ns-footer>
+</body>
+<!-- playground-fold-end -->
+<!-- playground-fold-end -->

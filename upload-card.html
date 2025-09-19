@@ -1,0 +1,118 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <title>EV Charger Photo Upload</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="upload-card.css">
+</head>
+<body>
+  <h1 class="page-title">Upload your photos</h1>
+
+  <!-- Container switches layout via media queries -->
+  <div class="upload-card-list" id="uploadCardList">
+    <!-- Example cards (add/remove as needed) -->
+    <div class="upload-card" data-step="1" data-total="8" data-label="Front of property" data-description="Show the full front including driveway / entrance." data-state="initial">
+      <div class="upload-card__inner">
+        <div class="upload-card__meta">
+          <span class="upload-card__step"></span>
+        </div>
+        <div class="upload-card__body">
+          <div class="upload-card__media">
+            <div class="upload-card__placeholder">
+              <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+                <rect width="64" height="64" rx="8" fill="#EBF7FF" stroke="#99D6FF"/>
+                <path d="M18 44L28 30L40 44H18Z" fill="#99D6FF" stroke="#004ECC"/>
+                <circle cx="38" cy="26" r="4" fill="#004ECC" />
+              </svg>
+            </div>
+            <img class="upload-card__thumb" alt="">
+            <div class="upload-card__progress" aria-hidden="true">
+              <div class="progress-ring">
+                <div class="progress-ring__slice">
+                  <div class="progress-ring__fill"></div>
+                  <div class="progress-ring__fill progress-ring__fill--fix"></div>
+                </div>
+                <div class="progress-ring__inner">
+                  <span class="progress-ring__value">0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="upload-card__analysing">
+              <div class="spinner" aria-hidden="true"></div>
+              <span class="upload-card__analysing-text">Analysing…</span>
+            </div>
+            <button class="upload-card__delete" type="button" aria-label="Delete photo">
+              <span>&times;</span>
+            </button>
+            <div class="upload-card__status-icon" aria-hidden="true"></div>
+          </div>
+          <div class="upload-card__text">
+            <h2 class="upload-card__title"></h2>
+            <p class="upload-card__desc"></p>
+            <p class="upload-card__hint"></p>
+          </div>
+          <div class="upload-card__actions">
+            <button type="button" class="uc-btn uc-btn-primary upload-card__primary"></button>
+            <!-- Added mobile camera button -->
+            <button type="button" class="uc-btn uc-btn-secondary upload-card__camera">Take photo</button>
+          </div>
+        </div>
+      </div>
+      <input class="upload-card__file" type="file" accept="image/*" hidden>
+      <!-- Added dedicated camera input -->
+      <input class="upload-card__file upload-card__file--camera" type="file" accept="image/*" capture="environment" hidden>
+    </div>
+
+    <div class="upload-card" data-step="2" data-total="8" data-label="Parking / Driveway" data-description="Show the area where you park (include boundaries)." data-state="initial">
+      <!-- ...structure identical; cloned by JS at runtime if needed... -->
+      <div class="upload-card__inner">
+        <div class="upload-card__meta">
+          <span class="upload-card__step"></span>
+        </div>
+        <div class="upload-card__body">
+          <div class="upload-card__media">
+            <div class="upload-card__placeholder">
+              <!-- ...same svg... -->
+              <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+                <rect width="64" height="64" rx="8" fill="#EBF7FF" stroke="#99D6FF"/>
+                <path d="M18 44L28 30L40 44H18Z" fill="#99D6FF" stroke="#004ECC"/>
+                <circle cx="38" cy="26" r="4" fill="#004ECC" />
+              </svg>
+            </div>
+            <img class="upload-card__thumb" alt="">
+            <div class="upload-card__progress" aria-hidden="true">
+              <div class="progress-ring">
+                <div class="progress-ring__slice">
+                  <div class="progress-ring__fill"></div>
+                  <div class="progress-ring__fill progress-ring__fill--fix"></div>
+                </div>
+                <div class="progress-ring__inner">
+                  <span class="progress-ring__value">0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="upload-card__analysing">
+              <div class="spinner" aria-hidden="true"></div>
+              <span>Analysing your photo…</span>
+            </div>
+            <button class="upload-card__delete" type="button" aria-label="Delete photo"><span>&times;</span></button>
+            <div class="upload-card__status-icon" aria-hidden="true"></div>
+          </div>
+          <div class="upload-card__text">
+            <h2 class="upload-card__title"></h2>
+            <p class="upload-card__desc"></p>
+            <p class="upload-card__hint"></p>
+          </div>
+          <div class="upload-card__actions">
+            <button type="button" class="uc-btn uc-btn-primary upload-card__primary"></button>
+            <button type="button" class="uc-btn uc-btn-secondary upload-card__camera">Take photo</button>
+          </div>
+        </div>
+      </div>
+      <input class="upload-card__file" type="file" accept="image/*" hidden>
+      <input class="upload-card__file upload-card__file--camera" type="file" accept="image/*" capture="environment" hidden>
+    </div>
+  </div>
+
+  <script src="upload-card.js"></script>
+</body>

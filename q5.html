@@ -1,0 +1,61 @@
+<!-- playground-fold -->
+<!doctype html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://www.britishgas.co.uk/react-components/ns-foundations.css">
+  <script src="https://www.britishgas.co.uk/react-components/react-components.umd.js"></script>
+      <link rel="stylesheet" href="style.css" type="text/css" />
+  <script src="https://www.britishgas.co.uk/nucleus/nucleus.min.js"></script>
+</head>
+<body>
+  <div class="header bg-header"></div>
+  <main class="ndsn">
+    <!-- playground-fold-end -->
+    <ns-panel decoration="cyan-light">
+      <ns-progress current="1" steps="3" info="Charger options" next="Your details"></ns-progress>
+      <div class="question-container">
+      <ns-content class="ev-question-content" >
+        <h1 class="h2">How will the cable be routed from your fuse box to the charger around your house?</h1>
+        <p class="p-normal">Choose the route you think is most likely- British Gas will check before we install the charger. </p>
+      </ns-content>
+       <ns-column basketball-court="1" hockey-pitch="3" football-pitch="3" rugby-pitch="3">
+
+        <rc-action-button  class="rc-action-button-height" element="a" title="Inside" description="" variant="stacked" href="q6.html" onclick="localStorage.setItem('q5_cable_location', 'Inside')" >
+        </rc-action-button>
+
+        <rc-action-button  class="rc-action-button-height"  element="a" title="Outside" description="" variant="stacked" href="q6.html" onclick="localStorage.setItem('q5_cable_location', 'Outside')" >
+        </rc-action-button>
+
+        <rc-action-button  class="rc-action-button-height"  element="a" title="Both" description="" variant="stacked" href="q6.html" onclick="localStorage.setItem('q5_cable_location', 'Both')" >
+
+        </rc-action-button>
+
+        </ns-column>
+      <ns-control icon="chevron-left" onclick="history.back()">Back</ns-control>
+      </div>
+    </ns-panel>
+  </main>
+  <ns-footer></ns-footer>
+</body>
+<!-- playground-fold-end -->
+
+
+
+    </ns-panel>
+  </main>
+  <ns-footer></ns-footer>
+
+  <script>
+(function(){
+  document.querySelectorAll('[data-answer-key]').forEach(b=>{
+    b.addEventListener('click',()=>localStorage.setItem(b.dataset.answerKey,b.dataset.answerValue));
+    if(localStorage.getItem(b.dataset.answerKey)===b.dataset.answerValue){
+      b.setAttribute('data-selected','true');
+    }
+  });
+})();
+</script>
+</body>
+<!-- playground-fold-end -->

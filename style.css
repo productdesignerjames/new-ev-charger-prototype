@@ -1,0 +1,159 @@
+/* Global h1 alignment */
+
+
+/* index.html styles */
+.ht-hero {
+  background-color: rgb(71, 182, 255);
+  background-image: -webkit-linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+  background-image: -moz-linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+  background-image: -o-linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+  background-image: linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+  padding: 5% 5% 5% 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.ht-hero-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #FFF !important;
+  margin-top: 16px;
+  gap: 1rem;
+}
+
+.ht-hero-title h1 {
+  margin-bottom: 0 !important;
+}
+
+.ht-hero-animation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.ht-hero-animation #mrsThingEV {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ht-hero-animation canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-hero-animation #mrsThingEV {
+    display: block;
+  }
+  .ht-hero-animation canvas {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .ht-hero {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .ht-hero-title {
+    margin-top: 0;
+  }
+}
+
+/* q1.html and q2.html styles */
+h1 {
+  max-width: 100%;
+  padding-bottom: 0rem !important;
+}
+
+@media screen and (min-width: 600px) {
+  .rc-action-button-height {
+    min-height: 170px;
+  }
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media screen and (min-width: 1260px) {
+    .question-container {
+    margin: 0 auto;
+    padding-top: 1rem;
+    max-width: 1000px;
+    width: 100%;
+    }
+}
+
+
+.inner-panel-as-nucleus-panel-says-no-to-appearing {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  color: #002f87;
+}
+
+.inner-panel-as-nucleus-panel-says-no-to-appearing h2,
+.inner-panel-as-nucleus-panel-says-no-to-appearing p, .inner-panel-as-nucleus-panel-says-no-to-appearing .p-caption {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 1260px) {
+  .inner-panel-as-nucleus-panel-says-no-to-appearing {
+    padding: 32px;
+    border-radius: 24px;
+  }
+}
+
+
+.small-image {
+    max-width: 300px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.ev-summary {
+  max-width: 100% !important;
+    padding-inline-start: 0 !important;
+}
+
+.ev-summary li:first-of-type{
+ border-top: 1px solid #C3CED5;
+ padding-top: 16px
+}
+
+.ev-summary li{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #C3CED5;
+  padding: 8px
+}
