@@ -116,7 +116,7 @@
 .upload-card__delete span{transform:translateY(-2px);}
 .upload-card[data-state=completed] .upload-card__media:hover .upload-card__delete,
 .upload-card[data-state=completed] .upload-card__media:focus-within .upload-card__delete{opacity:1;}
-.upload-card[data-state!=completed] .upload-card__delete{display:none;}
+.upload-card:not([data-state=completed]) .upload-card__delete{display:none;}
 
 .upload-card__title{font-size:1rem;margin:.25rem 0 .25rem;line-height:1.25;}
 .upload-card__desc{margin:.25rem 0;font-size:.825rem;line-height:1.3;color:var(--uc-col-muted);}

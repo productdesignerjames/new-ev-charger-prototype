@@ -5,41 +5,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://www.britishgas.co.uk/react-components/ns-foundations.css" type="text/css" />
-  <link rel="stylesheet" href="style.css" type="text/css" />
-  <script async src="https://ga.jspm.io/npm:es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/",
-        "three/examples/jsm/loaders/DRACOLoader.js": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/DRACOLoader.js"
-      }
-    }
-  </script>
-  <style>
-    .model-viewer-container {
-      position: relative;
-      width: 100%;
-      height: 600px;
-      background: #ffffff;
-      margin: 2rem auto;
-    }
-    #model-viewer {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-      pointer-events: auto;
-      touch-action: none;
-    }
-    #model-viewer canvas {
-      width: 100% !important;
-      height: 100% !important;
-    }
-  </style>
   <script src="https://www.britishgas.co.uk/react-components/react-components.umd.js" type="text/javascript"></script>
   <script src="https://www.britishgas.co.uk/nucleus/nucleus.min.js" type="text/javascript">
   </script>
+  <style>
+    /* Renamed hero classes for uniqueness */
+    .ht-hero {
+      background-color: rgb(71, 182, 255);
+      background-image: -webkit-linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+      background-image: -moz-linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+      background-image: -o-linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+      background-image: linear-gradient(350deg, transparent 0%, rgba(0, 78, 204, .5) 50%);
+      padding: 5% 5% 5% 5%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      gap: 0.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .ht-hero-title {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      color: #FFF !important;
+      margin-top: 16px;
+      gap: 1rem;
+    }
+    .ht-hero-title h1 {
+    margin-bottom:  0 !important;
+    }
+
+    .ht-hero-animation {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      position: relative;
+    }
+    .ht-hero-animation #mrsThingEV {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .ht-hero-animation canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ht-hero-animation #mrsThingEV {
+        display: block;
+      }
+      .ht-hero-animation canvas {
+        display: none;
+      }
+    }
+
+
+    @media screen and (min-width: 1000px) {
+        .ht-hero {
+          display: -ms-grid;
+          display: grid;
+          -ms-grid-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+        .ht-hero-title {
+          margin-top: 0;
+        }
+
+    }
+
+
+   </style>
 </head>
 
 <body>
@@ -59,114 +113,15 @@
           <h1 id="marketing">EV charging made easy, installed by British Gas</h1>              
               <p class="p-feature">	
                 Power your drive with greener, smarter charging for less. From £1,199 or £199.83/month, installed by us.</p>
-                   
-      <ns-cta href="q1.html">Get started</ns-cta>
-   
-             </div>
+              <ns-cta href="q1.html">Let’s get you plugged in</ns-cta>
+            </div>
         <div  class="ht-hero-animation">
           <!-- <img id="thumbsUpStatic" src="images/thumbs-up.webp" alt="Thumbs up" loading="lazy" /> -->
           <canvas id="mrsThingEV" class="her-animation" width="720" height="540"></canvas>
         </div>
-        </header>
-    
 
-      <div class="model-viewer-container">
-        <div id="model-viewer"></div>
-      </div>
-   
+    </header>
   </main>
-  
-    <script type="module">
-    import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-    import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-
-    const modelViewer = document.getElementById('model-viewer');
-    const scene = new THREE.Scene();
-    
-    // Set up loading manager
-    const loadingManager = new THREE.LoadingManager();
-    loadingManager.onProgress = (url, loaded, total) => {
-        console.log(`Loading: ${url} - ${(loaded/total * 100)}%`);
-    };
-    loadingManager.onError = (url) => {
-        console.error('Error loading:', url);
-    };
-    scene.background = new THREE.Color(0xf0f0f0);
-    
-    const camera = new THREE.PerspectiveCamera(6, modelViewer.clientWidth / modelViewer.clientHeight, 0.1, 1000);
-    camera.position.set(2, 10, 8);
-    camera.lookAt(0, 0, 0);
-    
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(modelViewer.clientWidth, modelViewer.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    modelViewer.appendChild(renderer.domElement);
-    
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    
-    // Add lights
-    // Add stronger lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-    scene.add(ambientLight);
-    
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
-    
-    const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    backLight.position.set(-5, 5, -5);
-    scene.add(backLight);
-
-    // Initial animation loop for controls
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    // Set up model loader with Draco compression
-    const loader = new GLTFLoader(loadingManager);
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
-    loader.setDRACOLoader(dracoLoader);
-
-    // Load the model
-    loader.load(
-        '../3d/eoMiniPro3Universal-transformed.glb',
-        function (gltf) {
-            console.log('Model loaded successfully:', gltf);
-
-            const model = gltf.scene;
-            
-            // Scale and position like Hive's viewer
-            model.scale.set(2, 2, 2);
-            model.position.set(0, 0, 0);
-            
-            scene.add(model);
-            
-            // Add rotation animation
-            function animate() {
-                requestAnimationFrame(animate);
-                model.rotation.y += 0.005;
-                controls.update();
-                renderer.render(scene, camera);
-            }
-            animate();
-        },
-        undefined,
-        function (error) {
-            console.error('Error loading model:', error);
-        }
-    );
-
-    // Initial scene render
-    renderer.render(scene, camera);
-    </script>
   <ns-footer></ns-footer>
 
     <script src="https://unpkg.com/@rive-app/canvas"></script>

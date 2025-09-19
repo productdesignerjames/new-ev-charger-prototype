@@ -1,5 +1,7 @@
 /* Global h1 alignment */
-
+h1 {
+  text-align: left !important;
+}
 
 /* index.html styles */
 .ht-hero {
@@ -87,14 +89,40 @@
 }
 
 /* q1.html and q2.html styles */
-h1 {
+.center h1 {
   max-width: 100%;
-  padding-bottom: 0rem !important;
+  padding-bottom: 2rem !important;
+}
+
+@media screen and (min-width: 1260px) {
+  .center h1 {
+    padding: 0 10%;
+  }
 }
 
 @media screen and (min-width: 600px) {
   .rc-action-button-height {
     min-height: 170px;
+  }
+}
+
+.inner-panel-as-nucleus-panel-says-no-to-appearing {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  color: #002f87;
+}
+
+.inner-panel-as-nucleus-panel-says-no-to-appearing h2,
+.inner-panel-as-nucleus-panel-says-no-to-appearing p {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 1260px) {
+
+  .inner-panel-as-nucleus-panel-says-no-to-appearing {
+    padding: 32px;
+    border-radius: 24px;
   }
 }
 

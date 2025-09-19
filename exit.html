@@ -5,10 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://www.britishgas.co.uk/react-components/ns-foundations.css" type="text/css" />
-  <link rel="stylesheet" href="style.css" type="text/css" />
   <script src="https://www.britishgas.co.uk/react-components/react-components.umd.js" type="text/javascript"></script>
   <script src="https://www.britishgas.co.uk/nucleus/nucleus.min.js" type="text/javascript">
   </script>
+  <style>
+
+
+ 
+    @media screen and (min-width: 600px) {
+      .rc-action-button-height {
+        min-height: 170px;
+      }
+    }
+
+
+   </style>
 </head>
 
 <body>
@@ -22,15 +33,13 @@
   <main class="ndsn">
     <!-- playground-fold-end -->
     <ns-panel decoration="cyan-light">
-      <div class="question-container">
       <ns-content  >
         <h1 class="h2">Sorry, we are currently only installing EV chargers for properties with off-street parking.</h1>
         <p class="p-normal">British Gas is committed to supporting the UK's transition to cleaner energy???</p>
         <ns-cta href="index.html">Exit journey</ns-cta>
       </ns-content>
 
-      <ns-control icon="chevron-left" onclick="history.back()">Back</ns-control>
-      </div>
+      <ns-control icon="chevron-left" href="q1.html">Go back to last question</ns-control>
     </ns-panel>
   </main>
   <ns-footer></ns-footer>

@@ -123,7 +123,7 @@
   function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
   function q(el,sel){ return el.querySelector(sel); }
 })();
-  }
+  
 
   function maybeReveal(card){
     if (!card._deferred) return;
@@ -194,4 +194,4 @@
 
   function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
   function q(el, sel){ return el.querySelector(sel); }
-})();
+

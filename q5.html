@@ -38,19 +38,19 @@
     </ns-panel>
   </main>
   <ns-footer></ns-footer>
-</body>
-<!-- playground-fold-end -->
-
-
-
-    </ns-panel>
-  </main>
-  <ns-footer></ns-footer>
 
   <script>
 (function(){
   document.querySelectorAll('[data-answer-key]').forEach(b=>{
     b.addEventListener('click',()=>localStorage.setItem(b.dataset.answerKey,b.dataset.answerValue));
+    if(localStorage.getItem(b.dataset.answerKey)===b.dataset.answerValue){
+      b.setAttribute('data-selected','true');
+    }
+  });
+})();
+</script>
+</body>
+<!-- playground-fold-end -->
     if(localStorage.getItem(b.dataset.answerKey)===b.dataset.answerValue){
       b.setAttribute('data-selected','true');
     }
