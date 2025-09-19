@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload photos</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="upload-card.css">
+  <style>
+    /* Minimal page framing (optional) */
+    body{margin:0;padding:16px;background:#f2f7fa;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    h1{font-size:1.4rem;margin:0 0 1rem;}
+    .uc-grid{display:grid;gap:20px;max-width:860px;margin:0 auto;}
+  </style>
+  <script src="upload-card.js" defer></script>
+</head>
+<body>
+  <h1>Property photos</h1>
+  <p style="max-width:680px;margin:.25rem 0 1.25rem;">Please upload the requested photos to help us assess your EV charger installation. Each photo is briefly analysed so we can guide you if we need a clearer view.</p>
+
+  <div class="uc-grid">
+    <!-- Upload Card 1 -->
+    <div class="upload-card"
+         data-step="1"
+         data-total="4"
+         data-label="Front of property"
+         data-description="Stand far enough back so the whole driveway / parking area is visible.">
+      <div class="upload-card__inner">
+        <div class="upload-card__meta">
+          <span class="upload-card__step"></span>
+        </div>
+        <div class="upload-card__body">
+          <div class="upload-card__media" tabindex="0" aria-label="Add or replace photo">
+            <div class="upload-card__placeholder">
+              <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#004ecc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <circle cx="8.5" cy="10.5" r="2.25"></circle>
+                <path d="M21 15.5 16.5 11 5 19"></path>
+              </svg>
+            </div>
+            <span class="upload-card__status-icon"></span>
+            <img class="upload-card__thumb" alt="">
+            <button type="button" class="upload-card__delete" aria-label="Remove photo">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="upload-card__text">
+            <h2 class="upload-card__title"></h2>
+            <p class="upload-card__desc"></p>
+            <p class="upload-card__hint"></p>
+
+            <div class="upload-card__progress">
+              <div class="progress-ring" data-over50="false">
+                <div class="progress-ring__fill"></div>
+                <div class="progress-ring__fill progress-ring__fill--fix"></div>
+                <div class="progress-ring__inner">
+                  <span class="progress-ring__value">0%</span>
+                </div>
+              </div>
+              <span>Uploading...</span>
+            </div>
+
+            <div class="upload-card__analysing">
+              <div class="spinner" aria-hidden="true"></div>
+              <span>Analysing photo…</span>
+            </div>
+          </div>
+
+          <div class="upload-card__actions">
+            <button type="button" class="uc-btn uc-btn-primary upload-card__primary">Upload photo</button>
+            <button type="button" class="uc-btn upload-card__camera">Use camera</button>
+            <input type="file"
+                   class="upload-card__file"
+                   accept="image/*"
+                   capture="environment"
+                   hidden
+                   aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duplicate for additional steps (change data-step, data-label, data-description) -->
+    <!--
+    <div class="upload-card" data-step="2" data-total="4" data-label="Consumer unit (fuse box)" data-description="Open the cover so breakers are visible.">
+      ...copy the same internal structure...
+    </div>
+    -->
+  </div>
+
+  <noscript>
+    <p style="color:#b00;font-weight:600;margin-top:2rem;">JavaScript is disabled. Photo upload preview and guidance will not work – please enable JavaScript.</p>
+  </noscript>
+</body>
+</html>

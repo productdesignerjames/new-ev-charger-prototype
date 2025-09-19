@@ -16,7 +16,8 @@
     progressValue:'.progress-ring__value',
     fills:'.progress-ring__fill',
     ring:'.progress-ring',
-    del:'.upload-card__delete'
+    del:'.upload-card__delete',
+    camera:'.upload-card__camera'
   };
   document.querySelectorAll('.upload-card').forEach(initCard);
   function initCard(card){
@@ -35,6 +36,10 @@
       handleFile(card,e.target.files[0]);
     });
     q(card,SEL.del).addEventListener('click',()=>reset(card));
+    const cam=q(card,SEL.camera);
+    if(cam) cam.addEventListener('click',()=>triggerFile(card));
+    const media=card.querySelector('.upload-card__media');
+    if(media) media.addEventListener('click',()=>triggerFile(card));
   }
   function triggerFile(card){ q(card,SEL.file).click(); }
   function handleFile(card,file){
@@ -123,16 +128,11 @@
   function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
   function q(el,sel){ return el.querySelector(sel); }
 })();
-  
-
-  function maybeReveal(card){
-    if (!card._deferred) return;
-    const img = q(card, SEL.thumb);
     if (img.dataset.objectUrl){
       img.src = img.dataset.objectUrl;
     }
     card._deferred = false;
-  }
+  
 
   function presentResult(card, state){
     // Reveal thumbnail now
