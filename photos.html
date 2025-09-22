@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EV Charger: sending us your photos</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="upload-card.css">
+  <!-- Optionally load BG design system fonts if available -->
+  <script src="upload-card.js" defer></script>
+</head>
+<body class="photo-page">
+  <header class="photo-hero">
+    <h1>EV Charger: sending us your photos</h1>
+    <p class="intro">
+      Ready to continue? Check the list below on which photos we need. Once a photo’s uploaded make sure you’re happy then submit them.
+    </p>
+    <p class="note"><strong>Please upload them as JPG or PNG, max 15&nbsp;MB each.</strong></p>
+  </header>
+
+  <!-- Mobile navigation (only visible < 870px) -->
+  <div class="mobile-nav">
+    <button type="button" class="nav-btn nav-prev" aria-label="Previous photo" disabled>
+      <!-- left arrow -->
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m14 6-6 6 6 6"/></svg>
+    </button>
+    <button type="button" class="nav-btn nav-next" aria-label="Next photo">
+      <!-- right arrow -->
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m10 6 6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <main class="photo-main">
+    <ol class="photo-list" id="photoList">
+      <!-- Each li.photo-card -->
+      <!-- Use data-required="true" for required; omit for optional -->
+      <!-- 1 -->
+      <li class="photo-card is-active" data-index="0" data-required="true">
+        <div class="card-header">
+          <div class="badge badge-required">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 9v4m0 4h.01M10.29 3.86 2.82 17.14A2 2 0 0 0 4.54 20h14.92a2 2 0 0 0 1.72-2.86L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+            </svg>
+            Required for installation
+          </div>
+          <span class="step-count"><span class="step-current">1</span>/<span class="step-total">8</span></span>
+        </div>
+        <h2 class="card-title">Front of property</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="guidance" hidden>
+          Include the whole building, driveway or entrance. Stand far enough back to get everything in.
+        </div>
+        <div class="upload-area" role="group" aria-label="Front of property photo">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-front.jpg" alt="Example: front of property" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="" />
+            <button type="button" class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/>
+                  <path d="M5 8h14l-1.5-3h-11Z"/>
+                  <rect x="3" y="8" width="18" height="11" rx="2"/>
+                </svg>
+              </button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden />
+        </div>
+      </li>
+
+      <!-- 2 -->
+      <li class="photo-card" data-index="1" data-required="true">
+        <div class="card-header">
+          <div class="badge badge-required">
+            <!-- warning icon reused -->
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 9v4m0 4h.01M10.29 3.86 2.82 17.14A2 2 0 0 0 4.54 20h14.92a2 2 0 0 0 1.72-2.86L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+            </svg>
+            Required for installation
+          </div>
+          <span class="step-count"><span class="step-current">2</span>/8</span>
+        </div>
+        <h2 class="card-title">Your private parking area</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="guidance" hidden>
+          Show where the car will park. If possible indicate where you’d like the charger installed.
+        </div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-parking.jpg" alt="Example: parking area" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="" />
+            <button type="button" class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg>
+              </button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden />
+        </div>
+      </li>
+
+      <!-- 3 -->
+      <li class="photo-card" data-index="2" data-required="true">
+        <div class="card-header">
+          <div class="badge badge-required">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 9v4m0 4h.01M10.29 3.86 2.82 17.14A2 2 0 0 0 4.54 20h14.92a2 2 0 0 0 1.72-2.86L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+            </svg>
+            Required for installation
+          </div>
+          <span class="step-count"><span class="step-current">3</span>/8</span>
+        </div>
+        <h2 class="card-title">Fuse box / consumer unit close-up</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="guidance" hidden>
+          Open the cover; ensure breaker labels underneath are readable.
+        </div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-fuse.jpg" alt="Example: fuse box close-up" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="">
+            <button type="button" class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg></button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden>
+        </div>
+      </li>
+
+      <!-- 4 Electricity meter and surrounding -->
+      <li class="photo-card" data-index="3" data-required="true">
+        <!-- ...existing code similar structure... -->
+        <div class="card-header">
+          <div class="badge badge-required"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 2.82 17.14A2 2 0 0 0 4.54 20h14.92a2 2 0 0 0 1.72-2.86L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Required for installation</div>
+          <span class="step-count"><span class="step-current">4</span>/8</span>
+        </div>
+        <h2 class="card-title">Electricity meter and surrounding area</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot<svg class="chevron" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg></button>
+        <div class="guidance" hidden>Show meter and cables coming in/out. Whole meter must be visible.</div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-meter-wide.jpg" alt="Example: electricity meter and surrounding area" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="">
+            <button class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg></button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden>
+        </div>
+      </li>
+
+      <!-- 5 Electricity meter close-up -->
+      <li class="photo-card" data-index="4" data-required="true">
+        <!-- ...existing code repeating structure... -->
+        <div class="card-header><div class="badge badge-required"><svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 2.82 17.14A2 2 0 0 0 4.54 20h14.92a2 2 0 0 0 1.72-2.86L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Required for installation</div><span class="step-count"><span class="step-current">5</span>/8</span></div>
+        <h2 class="card-title">Electricity meter close-up</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot<svg class="chevron" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg></button>
+        <div class="guidance" hidden>Digits and labels should be readable and in focus.</div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-meter-close.jpg" alt="Example: electricity meter close-up" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="">
+            <button class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg></button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden>
+        </div>
+      </li>
+
+      <!-- 6 Cutout box close-up -->
+      <li class="photo-card" data-index="5" data-required="true">
+        <!-- ...existing code... -->
+        <div class="card-header"><div class="badge badge-required"><svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 2.82 17.14A2 2 0 0 0 4.54 20h14.92a2 2 0 0 0 1.72-2.86L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Required for installation</div><span class="step-count"><span class="step-current">6</span>/8</span></div>
+        <h2 class="card-title">Cutout box close-up</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot<svg class="chevron" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg></button>
+        <div class="guidance" hidden>Show the full cutout box and wiring so the main fuse rating can be read.</div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-cutout.jpg" alt="Example: cutout box close-up" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="">
+            <button type="button" class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg></button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden>
+        </div>
+      </li>
+
+      <!-- 7 Water earthing (bonding) OPTIONAL -->
+      <li class="photo-card" data-index="6">
+        <div class="card-header">
+          <div class="badge badge-optional">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Optional if accessible
+          </div>
+          <span class="step-count"><span class="step-current">7</span>/8</span>
+        </div>
+        <h2 class="card-title">Water earthing (bonding)</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot<svg class="chevron" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg></button>
+        <div class="guidance" hidden>If visible, show the green/yellow earth cable clamped to the copper pipe (near stoptap). If not visible, still upload area photo.</div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-bonding1.jpg" alt="Example: water earthing bonding" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="">
+            <button class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg></button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden>
+        </div>
+      </li>
+
+      <!-- 8 Double check water bonding photo OPTIONAL -->
+      <li class="photo-card" data-index="7">
+        <div class="card-header">
+          <div class="badge badge-optional">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Optional if accessible
+          </div>
+          <span class="step-count"><span class="step-current">8</span>/8</span>
+        </div>
+        <h2 class="card-title">Double check your water bonding photo</h2>
+        <button class="guidance-toggle" type="button" aria-expanded="false">Help me get the best shot<svg class="chevron" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg></button>
+        <div class="guidance" hidden>Ensure main fuse rating is readable if visible.</div>
+        <div class="upload-area">
+          <div class="upload-box">
+            <div class="upload-placeholder">
+              <img class="guide-thumb" src="images/sample-bonding2.jpg" alt="Example: double check water bonding" loading="lazy">
+            </div>
+            <img class="upload-preview" alt="">
+            <button class="remove-photo" aria-label="Remove photo">&times;</button>
+          </div>
+          <div class="upload-actions">
+            <div class="action-col action-col--gallery">
+              <button type="button" class="circle-upload" aria-label="Upload from device"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+              <div class="action-label">Upload</div>
+            </div>
+            <div class="action-col action-col--camera">
+              <button type="button" class="circle-upload circle-camera" aria-label="Take photo (camera)" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/><path d="M5 8h14l-1.5-3h-11Z"/><rect x="3" y="8" width="18" height="11" rx="2"/></svg></button>
+              <div class="action-label">Camera</div>
+            </div>
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <input class="file-input" type="file" accept="image/*" hidden>
+        </div>
+      </li>
+    </ol>
+
+    <div class="submit-row">
+      <button type="button" class="primary-submit" disabled id="submitPhotos">
+        Submit and last questions
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </main>
+</body>
+</html>
